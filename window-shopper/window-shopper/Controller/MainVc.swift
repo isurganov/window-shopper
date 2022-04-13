@@ -70,7 +70,6 @@ class MainVC: UIViewController {
     }
     
     func addUiElements() {
-        
         view.addSubview(backGroundImage)
         view.addSubview(imageSquare)
         view.addSubview(newTxtField)
@@ -83,8 +82,6 @@ class MainVC: UIViewController {
     //вёрстка, ANCOR - NSLayoutAnchor почитай man Apple Developer
     
     func buildConstraints() {
-
-
 
         NSLayoutConstraint.activate([
 
@@ -125,10 +122,24 @@ class MainVC: UIViewController {
     }
     
     func updateButtonText() {
-        guard let text1 = newTxtField.text else { return  }
-        guard let text2 = newTxtField2.text else { return  }
+        //проверка на наличие текста в полях
+        guard let text1 = newTxtField.text else {
+            return
+        }
+        guard let text2 = newTxtField2.text else {
+            return
+        }
+        
+        //создание нового текста для кнопки
         let title: String = text1 + " with " + text2
-        newButton.setTitle(title, for: .normal)
+        
+        //проверка на наличие текста в полях
+        if (text1 == "" || text2 == "") {
+            newButton.setTitle("Calculate", for: .normal)
+        } else {
+            newButton.setTitle(title, for: .normal)
+        }
+ 
     }
 
 }
